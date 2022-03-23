@@ -1,0 +1,36 @@
+#ifndef STRINGUTILS_H
+#define STRINGUTILS_H
+
+#include <iostream>
+#include <string>
+
+namespace strings {
+using std::cout; using std::endl;
+using std::string;
+char first(std::string sen){
+    return sen[0];
+}
+
+string format_int_division(float quotient, int remainder){
+    int newq=(int)quotient;
+    string ns=std::to_string(newq);
+    string nss=std::to_string(remainder);
+    return ns+" rem "+nss;
+}
+
+string cut(std::string phrase){
+    int halfpoint = phrase.length()/2;
+    string tempn= phrase.substr(0,halfpoint);
+    phrase.erase(0,halfpoint);
+    phrase.insert(phrase.length(),tempn);
+    return phrase;
+}
+
+void help(){
+    std::cout << "This is the strings module" << std::endl;
+}
+
+
+}
+
+#endif

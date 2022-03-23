@@ -1,0 +1,33 @@
+#ifndef MATHUTILS_H
+#define MATHUTILS_H
+
+#include <iostream>
+#include <cmath>
+
+namespace math {
+
+int inc(int x){
+    return x + 1;
+}
+
+float calculate_tip(float amount, int percent, int people){
+    float percentf= (float)percent;
+    float percentd= percentf/100.0;
+    float interst=amount*percentd;
+    float total=amount+interst;
+    float due= total/people;
+    return due;
+}
+
+float circle_area(float radius){
+    return M_PI*pow(radius,2);
+}
+
+
+void help(){
+    std::cout << "This is the math module" << std::endl;
+}
+
+}
+
+#endif

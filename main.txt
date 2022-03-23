@@ -1,0 +1,18 @@
+#include <iostream>
+#include <math_utils.h>     
+#include <string_utils.h>
+
+using namespace std;
+using namespace math;      
+using namespace strings;
+
+int main(int argc, char* argv[]){
+
+    cout << inc(7) << endl;  
+
+    cout << first("hello") << endl;
+
+    strings::help();       
+    math::help();                           
+    return 0;
+}

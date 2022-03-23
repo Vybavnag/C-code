@@ -1,0 +1,42 @@
+#include <iostream>
+#include <list_utils.h>
+
+using namespace std;
+using namespace ucm;
+
+int main (int argc, char* argv[]){
+    int length= argc-2;
+    float arr[length];
+    for(int i=0;i<length;i++){
+        arr[i]=stof(argv[i+2]);
+    }
+    if(argc==1){
+        cout<< "Usage: ./calc [operation] [list of numbers...]"<<endl;
+        cout<<"Operations:"<<endl;
+        cout<<"  -add          Add up the input list"<<endl;
+        cout<<"  -avg          Compute the average of the input list"<<endl;
+        cout<<"  -max          Find the maximum of the input list"<<endl;
+        cout<<"  -min          Find the minimum of the input list"<<endl;
+        return 0;
+    }
+    if(string(argv[1])=="-add"){
+       float total= addUp(arr,length);
+       cout<<total<<endl;
+    }
+    else if(string(argv[1])=="-avg"){
+        float total= average(arr,length);
+       cout<<total<<endl;
+    }
+    else if(string(argv[1])=="-min"){
+        float total= min(arr,length);
+       cout<<total<<endl;
+    }
+    else if(string(argv[1])=="-max"){
+        float total= max(arr,length);
+       cout<<total<<endl;
+    }
+    else{
+        cout<<"Invalid operation: "<<string(argv[1])<<endl;
+    }
+    return 0;
+}

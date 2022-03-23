@@ -1,0 +1,226 @@
+#include <iostream>
+#include <string>
+#include <random>
+#include <functions.h>
+
+using namespace function;
+int main(int argc, char* argv[]){
+    std::vector<std::string> listOfStrings={"turtle", "garfield", "alligator", "headphones", "wedding dress", "violin", "newspaper", "raincoat", "chameleon","cardboard", "Oar","Drip", "Shampoo", "time machine","yardstick", "think", "lace", "darts", "avocado", "bleach","curtain", "extensioncord", "dent", "birthday", "lap", "sandbox", "bruise", "fog", "sponge", "wig", "pilot", "mascot", "fireman", "zoo", "sushi", "fizz", "ceiling", "post office", "season", "internet", "chess", "puppet"};
+   
+    int range =40;
+    std::random_device rd;  
+    std::mt19937 rng(rd()); 
+    std::uniform_int_distribution<> distr(1,range);
+    int randvalue=distr(rng);
+    std::string ranString= listOfStrings[randvalue];
+    int guessCount=0;
+    
+    std::cout<<"Try and guessing my word, by inputing letters, you get 11 chances"<<std::endl;
+
+    int x=0;
+    int place=0;
+    std::string placeholder[ranString.size()];
+    for(int k=0; k<ranString.size();k++){
+        placeholder[k]=" ";
+    }
+    int o= ranString.size();
+    std::vector<std::string> wrongGuess;
+    std::string letter;
+    std::vector<int> pos;
+    int r=0;
+   
+    std::cout<<"---------"<<std::endl;
+    std::cout<<"|       |"<<std::endl;
+    std::cout<<"|"<<std::endl;
+    std::cout<<"|"<<std::endl;
+    std::cout<<"|"<<std::endl;
+    std::cout<<"|"<<std::endl;
+    std::cout<<"|"<<std::endl;
+    std::cout<<"|"<<std::endl;
+    std::cout<<"|"<<std::endl;
+    std::cout<<"|"<<std::endl;
+    std::cout<<"_____"<<std::endl;
+
+    while(x!=-1){
+        std::cout<<"enter your guess"<<std::endl;
+        std::cin>>letter;
+        if (ifLetter(ranString,letter)){
+            allOcc(pos,ranString,letter);
+            for(int i=0; i<pos.size();i++){
+                r=pos[i];
+                placeholder[r]=ranString[r]; 
+            }
+            std::cout<<"The correct letters are"<<std::endl;
+            print(placeholder,o);//multiple letters cause an issue 
+            std::cout<<"The incorrect letters are"<<std::endl;
+            printVector(wrongGuess);
+            std::cout<<"you have "<<11-guessCount<<" guesses left"<<std::endl;
+        }
+        else{
+            wrongGuess.push_back(letter);
+            guessCount++;
+            std::cout<<"The correct letters are"<<std::endl;
+            print(placeholder,o);//multiple letters cause an issue 
+            std::cout<<"The incorrect letters are"<<std::endl;
+            printVector(wrongGuess);
+            std::cout<<"you have "<<11-guessCount<<" guesses left"<<std::endl;
+        }
+        if(guessCount==1){
+            std::cout<<"---------"<<std::endl;
+            std::cout<<"|       |"<<std::endl;
+            std::cout<<"|       O"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"_____"<<std::endl;
+        }
+        if(guessCount==2){
+            std::cout<<"---------"<<std::endl;
+            std::cout<<"|       |"<<std::endl;
+            std::cout<<"|       O"<<std::endl;
+            std::cout<<"|       |"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"_____"<<std::endl;
+        }
+        if(guessCount==3){
+            std::cout<<"---------"<<std::endl;
+            std::cout<<"|       |"<<std::endl;
+            std::cout<<"|       O"<<std::endl;
+            std::cout<<"|       |"<<std::endl;
+            std::cout<<"|       |"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"_____"<<std::endl;
+        }
+        if(guessCount==4){
+            std::cout<<"---------"<<std::endl;
+            std::cout<<"|       |"<<std::endl;
+            std::cout<<"|       O"<<std::endl;
+            std::cout<<"|      %|"<<std::endl;
+            std::cout<<"|       |"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"_____"<<std::endl;
+        }
+        if(guessCount==5){
+            std::cout<<"---------"<<std::endl;
+            std::cout<<"|       |"<<std::endl;
+            std::cout<<"|       O"<<std::endl;
+            std::cout<<"|      %|"<<std::endl;
+            std::cout<<"|     % |"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"_____"<<std::endl;
+        }
+        if(guessCount==6){
+            std::cout<<"---------"<<std::endl;
+            std::cout<<"|       |"<<std::endl;
+            std::cout<<"|       O"<<std::endl;
+            std::cout<<"|      %|%"<<std::endl;
+            std::cout<<"|     % |"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"_____"<<std::endl;
+        }
+        if(guessCount==7){
+            std::cout<<"---------"<<std::endl;
+            std::cout<<"|       |"<<std::endl;
+            std::cout<<"|       O"<<std::endl;
+            std::cout<<"|      %|%"<<std::endl;
+            std::cout<<"|     % | %"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"_____"<<std::endl;
+        }
+        if(guessCount==8){
+            std::cout<<"---------"<<std::endl;
+            std::cout<<"|       |"<<std::endl;
+            std::cout<<"|       O"<<std::endl;
+            std::cout<<"|      %|%"<<std::endl;
+            std::cout<<"|     % | %"<<std::endl;
+            std::cout<<"|      %"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"_____"<<std::endl;
+        }
+        if(guessCount==9){
+            std::cout<<"---------"<<std::endl;
+            std::cout<<"|       |"<<std::endl;
+            std::cout<<"|       O"<<std::endl;
+            std::cout<<"|      %|%"<<std::endl;
+            std::cout<<"|     % | %"<<std::endl;
+            std::cout<<"|      %"<<std::endl;
+            std::cout<<"|     %"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"_____"<<std::endl;
+        }
+        if(guessCount==10){
+            std::cout<<"---------"<<std::endl;
+            std::cout<<"|       |"<<std::endl;
+            std::cout<<"|       O"<<std::endl;
+            std::cout<<"|      %|%"<<std::endl;
+            std::cout<<"|     % | %"<<std::endl;
+            std::cout<<"|      % %"<<std::endl;
+            std::cout<<"|     %"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"_____"<<std::endl;
+        }
+        if(guessCount==11){
+            std::cout<<"---------"<<std::endl;
+            std::cout<<"|       |"<<std::endl;
+            std::cout<<"|       O"<<std::endl;
+            std::cout<<"|      %|%"<<std::endl;
+            std::cout<<"|     % | %"<<std::endl;
+            std::cout<<"|      % %"<<std::endl;
+            std::cout<<"|     %   %"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"|"<<std::endl;
+            std::cout<<"_____"<<std::endl;
+            x=-1;
+            std::cout<<"you lost gg"<<std::endl;
+            std::cout<<"you guessed";
+            printVector(wrongGuess);
+            print(placeholder,o);
+            std::cout<<"the correct word was "<<ranString<<std::endl;
+        }
+        if(compareString(placeholder,ranString,o)==true){
+            x=-1;
+             std::cout<<"the correct word was: "<<ranString<<" You won!! Congrats"<<std::endl;
+        }
+    }
+
+    return -1;
+
+    
+}

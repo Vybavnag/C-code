@@ -1,0 +1,54 @@
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+#include <iostream>
+#include <string>
+#include <random>
+
+namespace function{
+void printVector(std::vector<std::string> letter){
+    for (int i = 0; i < letter.size(); i++){
+        std::cout << letter[i];
+        if (i < letter.size() - 1){
+            std::cout << " ";
+        }
+    }
+    std::cout << std::endl;
+}
+void allOcc(std::vector<int> & vec, std::string data, std::string toSearch){//https://thispointer.com/find-all-occurrences-of-a-sub-string-in-a-string-c-both-case-sensitive-insensitive/ got the code from here 
+     int pos = data.find(toSearch);
+    
+    while( pos != std::string::npos)
+    {
+        vec.push_back(pos);
+        pos =data.find(toSearch, pos + toSearch.size());
+    }
+}
+void print(std::string letter[],int o){
+    for (int i = 0; i <o; i++){
+        std::cout << letter[i];
+    }
+    std::cout << std::endl;
+}
+bool ifLetter(std::string word,std::string letter){
+    if(word.find(letter)>word.size()){
+        return false;
+    }
+    else{
+        return true;
+    }
+    
+}
+bool compareString(std::string word1[], std::string word2,int o){
+    for(int i=0; i<o;i++){
+        std::string temp=word1[i];
+        std::string temp2=word2.substr(i,1);
+        if (temp!=temp2){
+            return false;
+        }
+    }
+    return true;
+}
+}
+
+#endif

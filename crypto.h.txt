@@ -1,0 +1,91 @@
+#ifndef CRYPTO_H
+#define CRYPTO_H
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <RandomSupport.h>
+
+void pad(int val){
+    std::string space = "";
+
+    if (val < 10){
+        space = "  ";
+    }
+    else if (val < 100){
+        space = " ";
+    }
+
+    std::cout << space << val;
+}
+
+void core_dump(void* p, int length){
+    unsigned char* q = (unsigned char*)p;
+    std::cout << "| ";
+    for (int i = 0; i < length; i++){
+        int curr = (int)(*q);
+        pad(curr);
+
+        if (i == length - 1){
+            std::cout << " |";
+        }
+        else{
+            std::cout << " | ";
+        }
+
+        q++;
+    }
+    std::cout << std::endl;
+}
+
+int thirdelement(unsigned int temp){
+    unsigned char* c=(unsigned char*)&temp;
+    c++;
+    c++;
+    int temp1=(int)*c;
+    return temp1;
+}
+
+std::string decode(std::vector<unsigned int>& ciphertext){
+    std::vector<unsigned char*> c;
+    int temp1=0;
+    std::string tempS="";
+    unsigned int temp=0;
+    std::string result = "";
+    for(int i=0; i<ciphertext.size();i++){
+        temp=ciphertext[i];
+        temp1=(thirdelement(temp));
+        tempS=(char)temp1;
+        result=result+tempS;
+    }
+
+    return result;
+}
+int randoint(int aii){
+    RNG generator(0,255);
+    int x=0;
+    unsigned char*c=(unsigned char*)&x;
+    *c=generator.get();
+    c++;
+    *c=generator.get();
+    c++;
+    *c=aii;
+    c++;
+    *c=generator.get();
+    return x;
+}
+
+std::vector<unsigned int> encode(std::string plaintext){
+    std::vector<unsigned int> ciphertext;
+    int asciilist[plaintext.size()];
+    int lk=0;
+    
+    for (int i=0; i<plaintext.size();i++){
+        asciilist[i]=plaintext[i];
+        lk=randoint(asciilist[i]);
+        ciphertext.push_back(lk);
+    }
+    return ciphertext;
+}
+
+#endif

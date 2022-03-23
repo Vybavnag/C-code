@@ -1,0 +1,15 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main (int argc, char* argv[]){
+
+    string s =argv[1];
+    string p =argv[2];
+    string r =argv[3];
+
+    s.replace(s.find(p),p.length(),r);
+    cout<<s<<endl;    
+    return 0;
+}

@@ -1,0 +1,13 @@
+// A simple program to convert F to C
+#include <iostream>
+
+using namespace std;
+
+int main(){ 
+    float fahrenheit;
+    
+    cin>>fahrenheit;
+    float celsius=(fahrenheit-32)*5/9;
+    cout<<celsius<<endl;
+    return 0;
+}

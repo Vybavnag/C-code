@@ -1,0 +1,15 @@
+// A simple program to convert feet to meters
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    float feet;
+
+    cin>>feet;
+    float meters = feet/3.28084;
+    cout<<meters<<endl;
+
+
+    return 0;
+}
